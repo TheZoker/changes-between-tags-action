@@ -53,6 +53,7 @@ event.
 | `include-tag-commit` | whether to include the commit with the current tag                                        | No       | `'true'`                       |
 | `include-hashes`     | whether or not each commit message should be prefixed with the corresponding hash         | No       | `'true'`                       |
 | `line-prefix`        | the prefix to add to every listed commit                                                  | No       | `'- '`                         |
+| `output-format`      | git log format (e.g., "%s (%h)" or "%h %s")                                               | No       | `'%h\ %s'`                         |
 
 ### Outputs
 

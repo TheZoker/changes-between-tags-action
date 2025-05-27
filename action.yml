@@ -32,6 +32,11 @@ inputs:
     required: false
     default: '- '
 
+  output-format:
+    description: git log format (e.g., "%s (%h)" or "%h %s")
+    required: false
+    default: "%h\ %s"
+
 outputs:
   changes:
     description: collected changes as multiline string
@@ -63,6 +68,7 @@ runs:
         includeTagCommit="${{ inputs.include-tag-commit }}"
         includeHashes="${{ inputs.include-hashes }}"
         linePrefix="${{ inputs.line-prefix }}"
+        outputFormat="${{ inputs.output-format }}"
 
         # fetch all tags from origin
         git fetch origin --tags --force
@@ -107,7 +113,7 @@ runs:
         fi
 
         # get changes for range
-        changes=$(git log --pretty=format:%h\ %s --no-decorate "$range")
+        changes=$(git log --pretty=format:"$outputFormat" --no-decorate "$range")
 
         # optionally remove the commit message tagged with the latest tag
         if [[ "$includeTagCommit" != "true" ]]; then
